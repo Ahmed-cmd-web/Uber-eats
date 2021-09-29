@@ -3,14 +3,11 @@
 import React, { useRef, useState } from "react";
 import {
   Keyboard,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   useColorScheme,
   View,
 } from "react-native";
-import Appview from "../components/Appsafeareaview";
+import Appview from "../components/Appview";
 import Apptextinput from "../components/Apptextinput";
 import registerscreencontent from "../content/registerscreencontent";
 import Appbutton from "../components/Appbutton";
@@ -31,18 +28,15 @@ const Register = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   return (
-    <Appview style={`flex-1 items-center justify-center mx-5  `}>
+    <Appview style={`flex-1 p-5 items-center justify-start  `}>
       <FirebaseRecaptchaVerifierModal
         ref={recaptcha}
         firebaseConfig={firebaseConfig}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={tw`flex-1`}>
+        <View>
           <Apptext style={`text-lg my-2`}>
             Name must be at least 3 characters long.
-          </Apptext>
-          <Apptext style={`text-lg my-2`}>
-            Phone number must be atleast 9 numbers long.
           </Apptext>
           <Apptext style={`text-lg my-2`}>
             An SMS will be sent to this number.
@@ -50,54 +44,46 @@ const Register = () => {
         </View>
       </TouchableWithoutFeedback>
 
-      <KeyboardAvoidingView
-        style={tw`flex-1 w-full items-center`}
-        behavior={"padding"}
-        keyboardVerticalOffset={55}
-      >
-        <Apptextinput
-          {...registerscreencontent[0]}
-          onchange={(e) => setName(e)}
-        />
+      <Apptextinput
+        {...registerscreencontent[0]}
+        onchange={(e) => setName(e)}
+      />
 
-        <View style={tw`w-full border-2 border-gray-300  rounded-full`}>
-          <PhoneInput
-            ref={ref}
-            defaultCode="US"
-            layout="first"
-            containerStyle={tw`w-full rounded-full overflow-hidden`}
-            withDarkTheme={mode}
-            onChangeFormattedText={(e) => setNumber(e)}
-          />
-        </View>
-        <Appbutton
-          placeholder={"Send verification code"}
-          bg={colors.red}
-          onpress={async () => {
-            try {
-              if (!(name.length >= 3 && ref.current?.isValidNumber(number)))
-                return;
-              const res = await backendfuncs.SEND_VERIFICATION_CODE(
-                number,
-                recaptcha?.current
-              );
-              if (!res) return;
-              
-              navigation.navigate("Verification", {
-                verificationId: res,
-                number,
-                name,
-              });
-            } catch (error) {
-              console.log(error);
-            }
-          }}
+      <View style={tw`w-full border-2 border-gray-300  rounded-full`}>
+        <PhoneInput
+          ref={ref}
+          defaultCode="US"
+          layout="first"
+          containerStyle={tw`w-full rounded-full overflow-hidden`}
+          withDarkTheme={mode}
+          onChangeFormattedText={(e) => setNumber(e)}
         />
-      </KeyboardAvoidingView>
+      </View>
+      <Appbutton
+        placeholder={"Send verification code"}
+        bg={colors.red}
+        onpress={async () => {
+          try {
+            if (!(name.length >= 3 && ref.current?.isValidNumber(number)))
+              return;
+            const res = await backendfuncs.SEND_VERIFICATION_CODE(
+              number,
+              recaptcha?.current
+            );
+            if (!res) return;
+
+            navigation.navigate("Verification", {
+              verificationId: res,
+              number,
+              name,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }}
+      />
     </Appview>
   );
 };
 
 export default Register;
-
-const styles = StyleSheet.create({});

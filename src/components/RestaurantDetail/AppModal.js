@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { View, Modal, TouchableOpacity } from "react-native";
 import Appview from "../../components/Appview";
 import tw from "tailwind-react-native-classnames";
 import Apptext from "../Apptext";
@@ -25,7 +25,7 @@ const Appmodal = ({
       onRequestClose={() => setVisible(false)}
       animationType="slide"
     >
-      <Appview style={`flex-1 justify-end bg-opacity-70`}>
+      <Appview style={`flex-1 justify-end items-center bg-opacity-70`}>
         <Appview style={` w-full h-1/2 items-center  `}>
           <Apptext style={`text-2xl font-bold`}>{restaurantname}</Apptext>
           <View
@@ -48,7 +48,7 @@ const Appmodal = ({
               <Apptext>${total}</Apptext>
             </Appview>
           </View>
-          <View style={tw`flex-1 justify-center py-5  `}>
+          <View style={tw`flex-1 items-center justify-center py-5  `}>
             <ViewCart
               title={"Checkout"}
               total={total}
@@ -60,6 +60,7 @@ const Appmodal = ({
                 });
                 setVisible(false);
               }}
+              styles={`m-2 `}
             />
             <TouchableOpacity onPress={() => setVisible(false)}>
               <Apptext style={`text-lg text-blue-500`}>Cancel</Apptext>
@@ -72,5 +73,3 @@ const Appmodal = ({
 };
 
 export default Appmodal;
-
-const styles = StyleSheet.create({});

@@ -3,7 +3,7 @@
 import React from "react";
 import Appview from "../Appview";
 import categoriescontent from "../../content/categoriescontent";
-import { FlatList, Image, ScrollView, View } from "react-native";
+import { FlatList, Image, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import Apptext from "../Apptext";
 const Categories = () => {

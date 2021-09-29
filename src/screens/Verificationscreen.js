@@ -1,14 +1,7 @@
 /** @format */
 
 import React, { useRef, useState } from "react";
-import {
-  Alert,
-  Keyboard,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 import Appbutton from "../components/Appbutton";
 import Apptextinput from "../components/Apptextinput";
 import Apptext from "../components/Apptext";
@@ -33,7 +26,6 @@ const Verificationscreen = ({ route }) => {
         style={{
           flex: 1,
           alignItems: "center",
-          justifyContent: "center",
           marginHorizontal: 10,
         }}
       >
@@ -101,5 +93,3 @@ const Verificationscreen = ({ route }) => {
 };
 
 export default Verificationscreen;
-
-const styles = StyleSheet.create({});

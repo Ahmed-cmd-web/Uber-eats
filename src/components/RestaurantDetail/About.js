@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import Apptext from "../Apptext";
 import Appview from "../Appview";
@@ -17,9 +17,9 @@ const About = ({
   return (
     <Appview style={`w-full`}>
       <Image
-        defaultSource={require("../../assets/splash.png")}
+        defaultSource={require("../../assets/images/bg1.jpg")}
         source={{ uri: image_url }}
-        style={(tw`w-full h-60`)}
+        style={tw`w-full h-60`}
       />
       <View style={tw`p-4`}>
         <Apptext style={`font-normal text-xl`}>{name}</Apptext>
@@ -37,5 +37,3 @@ const About = ({
 };
 
 export default About;
-
-const styles = StyleSheet.create({});

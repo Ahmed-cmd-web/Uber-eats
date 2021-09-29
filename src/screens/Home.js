@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import Appview from "../components/Appview";
@@ -14,46 +14,53 @@ import Secretkeys from "../content/Secretkeys";
 const Home = () => {
   const { url, Apikey } = Secretkeys;
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [size, setSize] = useState(5);
+  const [loading, setLoading] = useState(false);
+  const [size, setSize] = useState(15);
   const [activetab, setActivetab] = useState("Delivery");
+  const [country, setCountry] = useState("San Fransisco");
+  const callback = useCallback(
+    ({ item }) => <RestaurantItem {...item} loading={loading} />,
+    [data, loading]
+  );
   useEffect(() => {
     const data = async () => {
-      setLoading(true);
       try {
-        const r = await backendfuncs.GET_DATA(url, Apikey, size);
+        const r = await backendfuncs.GET_DATA(
+          url,
+          Apikey,
+          size,
+          country,
+          setLoading
+        );
         if (!r.data) return setLoading(false);
         setData(
           r?.data.businesses.filter((i) =>
             i.transactions.includes(activetab.toLowerCase())
           )
         );
-        setLoading(false);
       } catch (error) {
         setLoading(false);
         console.log(error);
       }
     };
     data();
-  }, [size, activetab]);
-
+  }, [size, activetab, country]);
   return (
     <SafeAreaView style={tw`bg-${colors.grey} flex-1 items-center  `}>
-      <Appview style={`w-full items-center flex-1 justify-around `}>
+      <Appview style={`w-full items-center p-2   justify-between `}>
         <HeaderTabs active={activetab} setactive={setActivetab} />
-        <SearchBar />
+        <SearchBar setcountry={setCountry} />
       </Appview>
       <Categories />
       <View style={tw`h-4/6`}>
         <FlatList
           data={data}
           showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           onEndReached={() => setSize(size + 5)}
           onEndReachedThreshold={0.1}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <RestaurantItem {...item} loading={loading} />
-          )}
+          renderItem={callback}
         />
       </View>
     </SafeAreaView>

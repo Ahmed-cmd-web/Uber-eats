@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import Appview from "../Appview";
@@ -72,7 +72,7 @@ const MenuItem = ({
         </View>
         <Image
           source={{ uri }}
-          defaultSource={require("../../assets/splash.png")}
+          defaultSource={require("../../assets/images/bg1.jpg")}
           style={tw`h-24 rounded w-24`}
         />
       </Appview>
@@ -81,5 +81,3 @@ const MenuItem = ({
 };
 
 export default MenuItem;
-
-const styles = StyleSheet.create({});

@@ -1,7 +1,8 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
+import tw from "tailwind-react-native-classnames";
 import Appview from "../Appsafeareaview";
 import Apptext from "../Apptext";
 
@@ -11,20 +12,20 @@ const Orderslistitem = ({
   total = "anything",
 }) => {
   return (
-    <Appview style={`w-full h-44 flex-row justify-between`}>
-      <View>
-        <Apptext>{restaurantname}</Apptext>
-        <Apptext>Total cost:${total}</Apptext>
-      </View>
-      <View>
-        {cartitems.map((e, i) => (
-          <Apptext key={i}>{e}</Apptext>
-        ))}
+    <Appview style={`w-full  flex-row justify-between`}>
+      <View style={tw`w-full  flex-row justify-between p-5 border-b-2`}>
+        <View>
+          <Apptext style={`font-bold text-lg`}>{restaurantname}</Apptext>
+          <Apptext>Total cost:${total}</Apptext>
+        </View>
+        <View style={tw`w-1/4`}>
+          {cartitems.map((e, i) => (
+            <Apptext key={i}>{e.title}</Apptext>
+          ))}
+        </View>
       </View>
     </Appview>
   );
 };
 
 export default Orderslistitem;
-
-const styles = StyleSheet.create({});

@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Appearance, useColorScheme } from "react-native";
+import React from "react";
+import { View } from "react-native";
+import { useColorScheme } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import colors from "../content/colors";
 const Appview = ({

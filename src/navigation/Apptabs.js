@@ -1,14 +1,10 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, useColorScheme, View } from "react-native";
+import { useColorScheme } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import Appview from "../components/Appview";
-import Apptext from "../components/Apptext";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import colors from "../content/colors";
 import Design from "../components/Design";
 import Homestack from "./Homestack";
 import Accountscreen from "../screens/Accountscreen";
@@ -61,7 +57,7 @@ const Apptabs = () => {
       />
       <Tabs.Screen
         name="Orders"
-        component={Design}
+        component={Orderscreen}
         options={{
           tabBarIcon: ({ size, color }) => (
             <FontAwesome5 name="receipt" size={size} color={color} />
@@ -82,5 +78,3 @@ const Apptabs = () => {
 };
 
 export default Apptabs;
-
-const styles = StyleSheet.create({});

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Apptext from "./Apptext";
 import Appview from "./Appview";
 
@@ -14,5 +14,3 @@ const Design = () => {
 };
 
 export default Design;
-
-const styles = StyleSheet.create({});

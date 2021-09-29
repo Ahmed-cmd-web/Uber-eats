@@ -21,10 +21,7 @@ const Accountscreen = () => {
       <Appbutton
         placeholder={"Log-out"}
         bg={colors.green}
-        onpress={() => {
-          console.log("pressed");
-          dispatch(LOG_OUT());
-        }}
+        onpress={() => dispatch(LOG_OUT())}
       />
     </Appview>
   );

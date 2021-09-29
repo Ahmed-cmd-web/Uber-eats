@@ -22,7 +22,7 @@ const OrderCompleted = ({ route }) => {
           style={tw`w-52`}
         />
         <Apptext style={`text-xl mx-2 `}>
-          Your order at ${restaurantname} has been placed for ${total}
+          Your order at {restaurantname} has been placed for ${total}
         </Apptext>
       </View>
       <ScrollView
@@ -38,7 +38,6 @@ const OrderCompleted = ({ route }) => {
           source={require("../assets/cooking.json")}
           autoPlay={true}
           loop={true}
-          style={tw`w-full`}
         />
       </Appview>
     </Appsafeareaview>

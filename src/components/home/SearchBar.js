@@ -3,7 +3,6 @@
 import React from "react";
 import {
   View,
-  Text,
   useColorScheme,
   TouchableWithoutFeedback,
   Keyboard,
@@ -15,37 +14,54 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Apptext from "../Apptext";
 import Appview from "../Appview";
 import colors from "../../content/colors";
+// import { installWebGeolocationPolyfill } from "expo-location";
 
-const SearchBar = () => {
-  const mode =
-    useColorScheme() === "dark"
-      ? colors.lightmodebackground
-      : "rgba(31, 41, 55, 1)";
+const SearchBar = ({ setcountry }) => {
+  const mode = useColorScheme();
+  // installWebGeolocationPolyfill()
   return (
-    <TouchableWithoutFeedback
-      onPress={Keyboard.dismiss}
-
-    >
-      <View style={tw` flex-row items-center mx-2  `}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={tw` flex-row items-center m-2   `}>
         <GooglePlacesAutocomplete
-          query={{ key: "AIzaSyDVBle2X83bXGti_8CuqcPw26jgojFN7WQ" }}
+          // currentLocation={true}
+          onPress={(e) => setcountry(e.structured_formatting.main_text)}
+          query={{
+            key: "AIzaSyCGNJGBJOecbrUdm-KAla_o6LAhPuBUDq8",
+            components: "country:us",
+          }}
+          textInputProps={{
+            returnKeyType: "search",
+            returnKeyLabel: "search",
+          }}
           placeholder="Search"
           styles={{
             textInputContainer: {
-              borderRadius: 99,
               alignItems: "center",
+              flexDirection: "row",
+              borderRadius: 99,
               padding: 5,
+              backgroundColor: "#eee",
             },
 
             textInput: {
               backgroundColor: "#eee",
-              fontWeight: "700",
-            },
-            container: {
-              borderWidth: 0,
+              fontWeight: "500",
               borderRadius: 99,
-              overflow: "hidden",
-              backgroundColor: "#eee",
+            },
+            poweredContainer: {
+              backgroundColor:
+                mode === "dark"
+                  ? colors.darkmodebackground
+                  : colors.lightmodebackground,
+            },
+            row: {
+              backgroundColor:
+                mode === "dark"
+                  ? colors.darkmodebackground
+                  : colors.lightmodebackground,
+            },
+            description: {
+              color: mode === "dark" ? colors.lightmodebackground : "black",
             },
           }}
           renderLeftButton={() => <Ionicons name="location-sharp" size={25} />}
@@ -53,7 +69,11 @@ const SearchBar = () => {
             <Appview
               style={`rounded-full border-0 flex-row p-3 items-center w-1/4 justify-around `}
             >
-              <AntDesign name="clockcircle" size={15} color={mode} />
+              <AntDesign
+                name="clockcircle"
+                size={15}
+                color={mode === "dark" ? colors.lightmodebackground : "black"}
+              />
               <Apptext>Search</Apptext>
             </Appview>
           )}

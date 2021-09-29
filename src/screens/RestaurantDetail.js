@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView} from "react-native";
 import { Divider } from "react-native-elements";
 import { useSelector } from "react-redux";
 import tw from "tailwind-react-native-classnames";
@@ -38,6 +38,7 @@ const RestaurantDetail = ({ route }) => {
         total={total}
         onPress={setVisible}
         title={"View Cart"}
+        styles={`absolute bottom-5`}
       />
     </Appview>
   );
@@ -45,4 +46,3 @@ const RestaurantDetail = ({ route }) => {
 
 export default RestaurantDetail;
 
-const styles = StyleSheet.create({});

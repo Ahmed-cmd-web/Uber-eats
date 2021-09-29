@@ -1,16 +1,8 @@
 /** @format */
 
 import React from "react";
-import {
-  Keyboard,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  useColorScheme,
-  View,
-} from "react-native";
+import { View } from "react-native";
 import tw from "tailwind-react-native-classnames";
-import Appview from "./Appview";
 import { Input } from "react-native-elements";
 import colors from "../content/colors";
 
@@ -38,5 +30,3 @@ const Apptextinput = ({
 };
 
 export default Apptextinput;
-
-const styles = StyleSheet.create({});

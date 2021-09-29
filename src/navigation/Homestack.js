@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import RestaurantDetail from "../screens/RestaurantDetail";
@@ -18,7 +18,11 @@ const Homestack = () => {
     >
       <Stack.Screen name="Homemenu" component={Home} />
       <Stack.Screen name="RestaurantDetails" component={RestaurantDetail} />
-      <Stack.Screen name="Ordercompleted" component={OrderCompleted} />
+      <Stack.Screen
+        name="Ordercompleted"
+        component={OrderCompleted}
+        options={{}}
+      />
 
       <Stack.Screen
         name="Payment"
@@ -30,5 +34,3 @@ const Homestack = () => {
 };
 
 export default Homestack;
-
-const styles = StyleSheet.create({});
